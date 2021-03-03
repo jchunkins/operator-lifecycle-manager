@@ -202,11 +202,11 @@ var (
 			Storage: false,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here???  I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -223,11 +223,11 @@ var (
 			Storage: true,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -247,11 +247,11 @@ var (
 			Storage: false,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -268,11 +268,11 @@ var (
 			Storage: false,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -289,11 +289,11 @@ var (
 			Storage: true,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -313,11 +313,11 @@ var (
 			Storage: false,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -334,11 +334,11 @@ var (
 			Storage: false,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -355,11 +355,11 @@ var (
 			Storage: true,
 			Schema: &apiextensionsv1.CustomResourceValidation{
 				OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-					Type:     "object",
-					Required: []string{"requiredString"}, // TODO: is this right here??? I would have thought it looked more like v1CRDVersion
+					Type: "object",
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"spec": {
-							Type: "object",
+							Type:     "object",
+							Required: []string{"requiredString"},
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"requiredString": {
 									Type: "string",
@@ -437,22 +437,23 @@ var (
 
 // CatalogEntry provides information needed for creating a bundle image in a catalog
 type CatalogEntry struct {
-	Version            semver.Version               // CSV version
-	ReplacesVersion    string                       // Prior CSV version this CSV replaces
-	SkipRange          string                       // SemVer range used in olm.skipRange annotation
-	DefaultChannel     string                       // Default channel for the package
-	Channels           []string                     // One or more channels that the bundle image should belong to
-	NewIndex           bool                         // Flag to indicate if a new empty catalog index should be built
-	PackageName        string                       // The OLM package name
-	OwnedGVKs          CRDInformationList           // CRDs that are owned by the CSV
-	DependencyGVKs     CRDInformationList           // CRDs that are dependencies (used in CSV required section and dependencies.yaml)
-	DependencyPackages []registry.PackageDependency // OLM package dependencies (used in dependencies.yaml)
-	CrdVersions        interface{}                  // CRD versions ([]apiextensionsv1.CustomResourceDefinitionVersion or []apiextensionsv1beta1.CustomResourceDefinitionVersion)
-	Addmode            GraphUpdateMode              // graph update mode that defines how channel graphs are updated. One of: [replaces, semver, semver-skippatch]
-	ConfigMap          *corev1.ConfigMap            // an optional config map to add to a catalog bundle
-	Secret             *corev1.Secret               // an optional secret to add to a catalog bundle
-	OperatorImage      string                       // the operator image to use in the CSV deployment section
-	OperatorCommand    []string                     // the operator command to execute in the CSV deployment section
+	Version                 semver.Version               // CSV version
+	ReplacesVersion         string                       // Prior CSV version this CSV replaces
+	SkipRange               string                       // SemVer range used in olm.skipRange annotation
+	DefaultChannel          string                       // Default channel for the package
+	Channels                []string                     // One or more channels that the bundle image should belong to
+	NewIndex                bool                         // Flag to indicate if a new empty catalog index should be built
+	PackageName             string                       // The OLM package name
+	OwnedGVKs               CRDInformationList           // CRDs that are owned by the CSV
+	DependencyGVKs          CRDInformationList           // CRDs that are dependencies (used in CSV required section and dependencies.yaml)
+	DependencyPackages      []registry.PackageDependency // OLM package dependencies (used in dependencies.yaml)
+	CrdVersions             interface{}                  // CRD versions ([]apiextensionsv1.CustomResourceDefinitionVersion or []apiextensionsv1beta1.CustomResourceDefinitionVersion)
+	Addmode                 GraphUpdateMode              // graph update mode that defines how channel graphs are updated. One of: [replaces, semver, semver-skippatch]
+	ConfigMap               *corev1.ConfigMap            // an optional config map to add to a catalog bundle
+	Secret                  *corev1.Secret               // an optional secret to add to a catalog bundle
+	OperatorImage           string                       // the operator image to use in the CSV deployment section
+	OperatorCommand         []string                     // the operator command to execute in the CSV deployment section
+	GenerateAnnotationsYaml bool                         // Flag to indicate if a annotations.yaml file should be generated manually or via "opm alpha bundle build"
 
 	BundleImageWithDigest string // Storage of the resulting bundle image reference (i.e. output variable set after bundle creation)
 }
@@ -787,10 +788,12 @@ func CreateTemporaryCatalog(toolsBin string, catalogEntries []CatalogEntry, stac
 			}
 		}
 
-		// Create annotations.yaml
-		err = WriteAnnotationsYaml(metadataDirectory, catalogEntry.PackageName, catalogEntry.Channels, catalogEntry.DefaultChannel)
-		if err != nil {
-			return err
+		if catalogEntry.GenerateAnnotationsYaml {
+			// Create annotations.yaml
+			err = WriteAnnotationsYaml(metadataDirectory, catalogEntry.PackageName, catalogEntry.Channels, catalogEntry.DefaultChannel)
+			if err != nil {
+				return err
+			}
 		}
 
 		// Create dependency.yaml
@@ -903,8 +906,12 @@ func CreateBundleImage(toolsbin string, destinationDir string, manifestDirectory
 		"--package", packageNameLower,
 		"--channels", strings.Join(catalogEntry.Channels, ","),
 		"--default", catalogEntry.DefaultChannel,
-		// "--overwrite") // TODO overwrite seems inappropriate since we generate our own annotations.yaml
 	)
+
+	if !catalogEntry.GenerateAnnotationsYaml {
+		// we're configured to allow the annotations.yaml file to be generated by opm alpha bundle build
+		cmd.Args = append(cmd.Args, "--overwrite")
+	}
 	// this will be the destination for the generated docker file for the bundle
 	cmd.Dir = destinationDir
 	log(fmt.Sprintf("Executing command: %v", cmd))
@@ -1023,7 +1030,6 @@ func CreateIndexFromDatabase(destinationDir string, stack Stack) error {
 		return err
 	}
 
-	// TODO what about custom OPM???  (i.e. COPY temp/opm/opm /bin/opm)
 	var copyFromLine string
 	var additionalLabel string
 	var entryPointLine string
@@ -1342,7 +1348,7 @@ func createCSVTemplate(catalogEntry *CatalogEntry) (*operatorsv1alpha1.ClusterSe
 				Owned:    catalogEntry.OwnedGVKs.GetCRDDescription(),
 				Required: catalogEntry.DependencyGVKs.GetCRDDescription(),
 			},
-			DisplayName: catalogEntry.PackageName, // TODO: using package name (using whatever case is provided) here... it does not seem important enough to parameterize
+			DisplayName: catalogEntry.PackageName,
 			InstallStrategy: operatorsv1alpha1.NamedInstallStrategy{
 				StrategyName: "install",
 				StrategySpec: operatorsv1alpha1.StrategyDetailsDeployment{
@@ -1391,7 +1397,7 @@ func createCSVTemplate(catalogEntry *CatalogEntry) (*operatorsv1alpha1.ClusterSe
 												},
 												Image:           catalogEntry.OperatorImage,
 												ImagePullPolicy: corev1.PullAlways,
-												Name:            packageNameLower, // TODO container name is supposed to be unique within pod... using package name for now
+												Name:            packageNameLower,
 												Resources:       corev1.ResourceRequirements{},
 											},
 										},
@@ -1422,7 +1428,7 @@ func createCSVTemplate(catalogEntry *CatalogEntry) (*operatorsv1alpha1.ClusterSe
 								},
 								{
 									APIGroups:     []string{"apps"},
-									ResourceNames: []string{packageNameLower}, // TODO... I think this should reflect whatever we use for deployment name...  using package name for now
+									ResourceNames: []string{packageNameLower},
 									Resources:     []string{"deployments/finalizers"},
 									Verbs:         []string{"update"},
 								},
