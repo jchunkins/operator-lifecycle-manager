@@ -35,7 +35,7 @@ jobs:
       - name: start local registry and begin e2e-local tests
         run: |
           "${GITHUB_WORKSPACE}/scripts/start_registry.sh"
-          "make e2e-local NODES=2 JUNIT_DIRECTORY=./artifacts/ TOOLS_BIN=\"${GITHUB_WORKSPACE}/${TOOLS_BIN_RELATIVE_PATH}\""
+          make e2e-local NODES=2 JUNIT_DIRECTORY=./artifacts/ TOOLS_BIN="${GITHUB_WORKSPACE}/${TOOLS_BIN_RELATIVE_PATH}"
 
       - name: Archive Test Artifacts # test results, failed or not, are always uploaded.
         if: ${{ always() }}
