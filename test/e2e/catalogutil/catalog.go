@@ -17,6 +17,7 @@ import (
 
 	"github.com/blang/semver/v4"
 	"github.com/operator-framework/api/pkg/lib/version"
+	"github.com/operator-framework/api/pkg/operators/v1alpha1"
 	operatorsv1alpha1 "github.com/operator-framework/api/pkg/operators/v1alpha1"
 
 	"github.com/operator-framework/operator-registry/pkg/lib/bundle"
@@ -1350,7 +1351,7 @@ func createCSVTemplate(catalogEntry *CatalogEntry) (*operatorsv1alpha1.ClusterSe
 			},
 			DisplayName: catalogEntry.PackageName,
 			InstallStrategy: operatorsv1alpha1.NamedInstallStrategy{
-				StrategyName: "install",
+				StrategyName: v1alpha1.InstallStrategyNameDeployment,
 				StrategySpec: operatorsv1alpha1.StrategyDetailsDeployment{
 					DeploymentSpecs: []operatorsv1alpha1.StrategyDeploymentSpec{
 						{
