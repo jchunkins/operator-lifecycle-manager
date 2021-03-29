@@ -520,7 +520,7 @@ var _ = Describe("CRD Versions", func() {
 	})
 })
 
-func fetchCRD(c operatorclient.ClientInterface, crc versioned.Interface, name, namespace string) (*v1beta1.CustomResourceDefinition, error) {
+func fetchCRD(c operatorclient.ClientInterface, crc versioned.Interface, name string) (*v1beta1.CustomResourceDefinition, error) {
 	// TODO: add a fuction for v1.CRD
 	var fetchedCRD *v1beta1.CustomResourceDefinition
 	var err error

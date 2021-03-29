@@ -33,9 +33,9 @@ var _ = Describe("Sample", func() {
 		operatorImage := "quay.io/cdjohnson/ibm-sample-panamax-operator@sha256:47c9fcef261f3f26dbb6c05f904d11563aae43f61d72e0e4556399f3003c97d0"
 		operatorCommand := []string{"ibm-sample-panamax-operator"}
 		catalogEntry := []cu.CatalogEntry{
-			{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: "alpha", Channels: []string{"alpha"}, NewIndex: true, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: operatorCommand},
-			{Version: semver.MustParse("1.0.1"), ReplacesVersion: "", SkipRange: "<1.0.1", DefaultChannel: "alpha", Channels: []string{"alpha"}, NewIndex: false, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: operatorCommand},
-			{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: "alpha", Channels: []string{"alpha"}, NewIndex: false, PackageName: "testoperatorb", OwnedGVKs: cu.B1v1CRDDescription, DependencyGVKs: cu.A1v1CRDDescription, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: operatorCommand},
+			{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: alphaChannel, Channels: []string{alphaChannel}, NewIndex: true, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: operatorCommand},
+			{Version: semver.MustParse("1.0.1"), ReplacesVersion: "", SkipRange: "<1.0.1", DefaultChannel: alphaChannel, Channels: []string{alphaChannel}, NewIndex: false, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: operatorCommand},
+			{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: alphaChannel, Channels: []string{alphaChannel}, NewIndex: false, PackageName: "testoperatorb", OwnedGVKs: cu.B1v1CRDDescription, DependencyGVKs: cu.A1v1CRDDescription, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: operatorCommand},
 		}
 		// TEST FOR DOWNSTREAM REGISTRY
 
@@ -116,9 +116,9 @@ var _ = Describe("Sample", func() {
 			// don't want to rebuild the image if it already exists
 			operatorImage := *dummyImage
 			catalogEntry := []cu.CatalogEntry{
-				{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: "alpha", Channels: []string{"alpha"}, NewIndex: true, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: nil},
-				{Version: semver.MustParse("1.0.1"), ReplacesVersion: "", SkipRange: "<1.0.1", DefaultChannel: "alpha", Channels: []string{"alpha"}, NewIndex: false, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: nil},
-				{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: "alpha", Channels: []string{"alpha"}, NewIndex: false, PackageName: "testoperatorb", OwnedGVKs: cu.B1v1CRDDescription, DependencyGVKs: cu.A1v1CRDDescription, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: nil},
+				{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: alphaChannel, Channels: []string{alphaChannel}, NewIndex: true, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: nil},
+				{Version: semver.MustParse("1.0.1"), ReplacesVersion: "", SkipRange: "<1.0.1", DefaultChannel: alphaChannel, Channels: []string{alphaChannel}, NewIndex: false, PackageName: "testoperatora", OwnedGVKs: cu.A1v1CRDDescription, DependencyGVKs: nil, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: nil},
+				{Version: semver.MustParse("1.0.0"), ReplacesVersion: "", SkipRange: "", DefaultChannel: alphaChannel, Channels: []string{alphaChannel}, NewIndex: false, PackageName: "testoperatorb", OwnedGVKs: cu.B1v1CRDDescription, DependencyGVKs: cu.A1v1CRDDescription, DependencyPackages: nil, Addmode: cu.SemverSkipPatch, ConfigMap: nil, Secret: nil, CrdVersions: cu.V1CRDVersionV1beta1, OperatorImage: operatorImage, OperatorCommand: nil},
 			}
 			stack := cu.Stack{
 				OpmBinarySourceImage: cu.Upstream1_15,
@@ -166,18 +166,9 @@ var _ = Describe("Sample", func() {
 
 			// 2. crd
 			wantCRDName := cu.A1v1CRDDescription[0].Description.Name
-			_, err = fetchCRD(c, crc, wantCRDName, testNamespace)
+			_, err = fetchCRD(c, crc, wantCRDName)
 			Expect(err).ShouldNot(HaveOccurred())
 		})
 	})
 
 })
-
-// TODO: represent test setup as a table entry
-// TestEntry represents a structure to describe a test case
-type TestEntry struct {
-	name     string        // name of the test
-	prereq   []interface{} // prepreq objects that needs to created
-	input    []interface{} // input object that drives the test
-	expected []interface{} // expected objects
-}
